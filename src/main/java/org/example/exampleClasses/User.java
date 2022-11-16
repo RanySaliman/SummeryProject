@@ -5,6 +5,8 @@ import org.example.Anottations.NotNull;
 import org.example.Anottations.PrimaryKey;
 import org.example.Anottations.Unique;
 
+import java.util.Objects;
+
 public class User {
 
     @AutoIncrement
@@ -100,5 +102,18 @@ public class User {
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id.equals(user.id) && firstName.equals(user.firstName) && lastName.equals(user.lastName) && email.equals(user.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName, email);
     }
 }
